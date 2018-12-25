@@ -51,13 +51,13 @@ try:
   data = str(ser.readline()).split('@')
   while True:
     if len(data) == 6 :
-      # t_temp          = '{0:03d}'.format(int(float(data[1]) * 10))
-      t_temp            = '{0:03d}'.format(int((float(data[1]) - 32) / .18))
+      t_temp          = '{0:03d}'.format(int(float(data[1]) * 10))
+      # t_temp            = '{0:03d}'.format(int((float(data[1]) - 32) / .18))
       t_humid           = '{0:03d}'.format(int(float(data[2]) * 10))
       t_ps_volt         = '{0:03d}'.format(int(float(data[3]) * 10))
       t_batt_volt       = '{0:03d}'.format(int(float(data[4]) * 10))
-      break
       t_b2              = "1"
+      break
 except:
   pass
 
@@ -76,7 +76,7 @@ index_file = open(index_file_path, 'w')
 index_file.write(new_index)
 index_file.close()
 
-#construct since bits
+#construct sense bits
 if int(t_ps_volt)   > 135 : t_b3 = "1"
 if int(t_batt_volt) < 126 : t_b4 = "1"
 if int(t_temp)      > 400 : t_b5 = "1"
@@ -84,3 +84,4 @@ if int(t_temp)      < 125 : t_b6 = "1"
 
 
 print("T#{},{},{},{},{},{},{}{}{}{}{}{}00".format(index, t_temp, t_humid, t_ps_volt, t_batt_volt, t_cpu_temp, t_b1, t_b2, t_b3, t_b4, t_b5, t_b6))
+print("")
