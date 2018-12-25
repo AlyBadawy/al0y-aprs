@@ -23,22 +23,6 @@ t_b6            = "0"
 t_b7            = "0"
 t_b8            = "0"
 
-
-# This constructs the telemetry index number, incerement it and save to file.
-if not os.path.exists(index_file_path):
-  index_file = open(index_file_path, "w+")
-  index_file.write("000")
-index_file = open(index_file_path, 'r')
-index = index_file.read()
-index_file.close()
-new_index = '{0:03d}'.format(int(index) + 1)
-if int(new_index) > 999:
-   new_index = "000"
-index_file = open(index_file_path, 'w')
-index_file.write(new_index)
-index_file.close()
-
-
 # This checks if there is internet
 try:
   timeout     = 2
@@ -77,6 +61,20 @@ try:
 except:
   pass
 
+
+# This constructs the telemetry index number, incerement it and save to file.
+if not os.path.exists(index_file_path):
+  index_file = open(index_file_path, "w+")
+  index_file.write("000")
+index_file = open(index_file_path, 'r')
+index = index_file.read()
+index_file.close()
+new_index = '{0:03d}'.format(int(index) + 1)
+if int(new_index) > 999:
+   new_index = "000"
+index_file = open(index_file_path, 'w')
+index_file.write(new_index)
+index_file.close()
 
 #construct since bits
 if int(t_ps_volt)   > 135 : t_b3 = "1"
